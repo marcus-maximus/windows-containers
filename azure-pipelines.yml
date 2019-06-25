@@ -10,7 +10,13 @@ pool:
   vmImage: 'win1803'
 
 steps:
-- script: |
+- pwsh: |
     cd buildtools
-    docker build -t builtools:VS2019 .
+    docker build -t marcusmaximus/msvc-buildtools:2019 .
   displayName: 'Build docker image'
+- pwsh:
+    docker login -u $env:DOCKER_HUB_USER -p $env:DOCKER_HUB_PASSWORD
+  env: 
+    DOCKER_HUB_USER: $(dockerhub_user)
+    DOCKER_HUB_PASSWORD: $(dockerhub_password)
+  displayName: 'Push image to docker hub'
