@@ -15,8 +15,8 @@ steps:
     docker build -t marcusmaximus/msvc-buildtools:2019 .
   displayName: 'Build docker image'
 - pwsh:
-    $(dockerhub_password) | docker login --username $(dockerhub_password) --password-stdin
-  #env: 
-    #DOCKER_HUB_USER: $(dockerhub_user)
-    #DOCKER_HUB_PASSWORD: $(dockerhub_password)
+    $env:DOCKERHUB_PASSWORD | docker login --username $env:DOCKERHUB_USER --password-stdin
+  env: 
+    DOCKERHUB_USER: $dockerhub_user
+    DOCKERHUB_PASSWORD: $dockerhub_password
   displayName: 'Push image to docker hub'
