@@ -10,12 +10,13 @@ pool:
   vmImage: 'win1803'
 
 steps:
-- pwsh: |
-    cd buildtools
-    docker build -t marcusmaximus/msvc-buildtools:2019 .
-  displayName: 'Build docker image'
+#- pwsh: |
+#    cd buildtools
+#    docker build -t marcusmaximus/msvc-buildtools:2019 .
+#  displayName: 'Build docker image'
 - pwsh:
     $env:DOCKERHUB_PASSWORD | docker login --username $env:DOCKERHUB_USER --password-stdin
+    #docker push marcusmaximus/msvc-buildtools:2019
   env: 
     DOCKERHUB_USER: $dockerhub_user
     DOCKERHUB_PASSWORD: $dockerhub_password
