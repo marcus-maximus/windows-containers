@@ -17,7 +17,7 @@ steps:
 - pwsh:
     #$env:DOCKERHUB_PASSWORD | docker login --username $env:DOCKERHUB_USER --password-stdin
     #docker push marcusmaximus/msvc-buildtools:2019
-    write-host $env:DOCKERHUB_USER
+    write-host $env:DOCKERHUB_PASSWORD
   env: 
     DOCKERHUB_USER: $dockerhub_user
     DOCKERHUB_PASSWORD: $dockerhub_password
