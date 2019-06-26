@@ -14,10 +14,11 @@ steps:
 #    cd buildtools
 #    docker build -t marcusmaximus/msvc-buildtools:2019 .
 #  displayName: 'Build docker image'
-- pwsh:
-    #$env:DOCKERHUB_PASSWORD | docker login --username $env:DOCKERHUB_USER --password-stdin
+- pwsh: |
+    $env:DOCKERHUB_PASSWORD | docker login --username $env:DOCKERHUB_USER --password-stdin
     #docker push marcusmaximus/msvc-buildtools:2019
-    write-host $env:DOCKERHUB_PASSWORD
+    #write-host $env:DOCKERHUB_PASSWORD
+    docker logout
   env: 
     DOCKERHUB_USER: $dockerhub_user
     DOCKERHUB_PASSWORD: $dockerhub_password
