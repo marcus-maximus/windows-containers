@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/windows/servercore:1803
+FROM mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-1803
 
 SHELL [ "powershell" ]
 

@@ -8,7 +8,7 @@ pipeline {
             steps {
                 powershell '''
                     cd buildtools
-                    docker build -t marcusmaximus/msvc-buildtools:2019 .
+                    docker build -m 2GB -t marcusmaximus/msvc-buildtools:2019 .
                 '''
             }
         }
