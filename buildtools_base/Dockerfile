@@ -1,6 +1,6 @@
 # escape=`
 
-FROM mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2018
+FROM mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-1803
 
 SHELL [ "powershell" ]
 
