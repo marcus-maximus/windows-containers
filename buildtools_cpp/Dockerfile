@@ -1,6 +1,6 @@
 # escape=`
 
-FROM marcusmaximus/msvc-buildtools-base
+FROM marcusmaximus/msvc-buildtools-base:2019
 
 SHELL [ "powershell" ]
 
