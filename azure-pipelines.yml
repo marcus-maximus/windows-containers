@@ -12,18 +12,13 @@ pool:
 steps:
 - pwsh: |
     cd buildtools_base
-    docker build -m 2GB -t marcusmaximus/msvc-buildtools-base:2019 .
-  displayName: 'Build image buildtools-base'
-- pwsh: |
-    cd buildtools_cpp
-    docker build -m 2GB -t marcusmaximus/msvc-buildtools-cpp:2019 .
-  displayName: 'Build image buildtools-cpp'
+    docker build -m 2GB -t marcusmaximus/msvc-buildtools:2019 .
+  displayName: 'Build image buildtools'
 - pwsh: |
     $env:DOCKERHUB_PASSWORD | docker login --username $env:DOCKERHUB_USER --password-stdin
-    docker push marcusmaximus/msvc-buildtools-base:2019
-    docker push marcusmaximus/msvc-buildtools-cpp:2019
+    docker push marcusmaximus/msvc-buildtools:2019
     docker logout
   env: 
     DOCKERHUB_USER: $(dockerhub_user)
     DOCKERHUB_PASSWORD: $(dockerhub_password)
-  displayName: 'Push images to docker hub'
+  displayName: 'Push image to docker hub'
