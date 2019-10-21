@@ -1,9 +1,6 @@
 # escape=`
 
-# Copyright (C) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT license. See LICENSE.txt in the project root for license information.
-
-ARG FROM_IMAGE=mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-1803
+ARG FROM_IMAGE=mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019
 FROM ${FROM_IMAGE}
 
 # Reset the shell.
