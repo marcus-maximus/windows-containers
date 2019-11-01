@@ -15,6 +15,9 @@ steps:
     docker build -m 2GB -t marcusmaximus/msvc-buildtools:2019-servercore-1803 --build-arg FROM_IMAGE=mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-1803 .
   displayName: 'Build image buildtools'
 - pwsh: |
+    docker run --rm marcusmaximus/msvc-buildtools:2019-servercore-1803 C:\Tests.ps1
+  displayName: 'Run tests'
+- pwsh: |
     $env:DOCKERHUB_PASSWORD | docker login --username $env:DOCKERHUB_USER --password-stdin
     docker push marcusmaximus/msvc-buildtools:2019
     docker logout
