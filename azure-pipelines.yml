@@ -9,17 +9,21 @@ trigger:
 pool:
   vmImage: 'win1803'
 
+variables:
+  tag_name: 'marcusmaximus/msvc-buildtools:2019-servercore-1803'
+  base_image: 'mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-1803'
+
 steps:
 - pwsh: |
     cd buildtools
-    docker build -m 2GB -t marcusmaximus/msvc-buildtools:2019-servercore-1803 --build-arg FROM_IMAGE=mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-1803 .
+    docker build -m 2GB -t $env:TAG_NAME --build-arg FROM_IMAGE=$env:BASE_IMAGE .
   displayName: 'Build image buildtools'
 - pwsh: |
-    docker run --rm marcusmaximus/msvc-buildtools:2019-servercore-1803 C:\Tests.ps1
+    docker run --rm $env:TAG_NAME C:\Tests.ps1
   displayName: 'Run tests'
 - pwsh: |
     $env:DOCKERHUB_PASSWORD | docker login --username $env:DOCKERHUB_USER --password-stdin
-    docker push marcusmaximus/msvc-buildtools:2019
+    docker push $env:TAG_NAME
     docker logout
   env: 
     DOCKERHUB_USER: $(dockerhub_user)
