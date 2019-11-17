@@ -8,7 +8,7 @@ pipeline {
             steps {
                 powershell '''
                     cd buildtools_base
-                    docker build -m 2GB -t marcusmaximus/msvc-buildtools-base:2019 .
+                    docker build -m 2GB -t marcusmaximus/msvc-buildtools-base:2019-servercore-ltsc2019 .
                 '''
             }
         }
@@ -16,7 +16,14 @@ pipeline {
             steps {
                 powershell '''
                     cd buildtools_cpp
-                    docker build -m 2GB -t marcusmaximus/msvc-buildtools-cpp:2019 .
+                    docker build -m 2GB -t marcusmaximus/msvc-buildtools-cpp:2019-servercore-ltsc2019 .
+                '''
+            }
+        }
+        stage('Test') {
+            steps {
+                powersehll ''''
+                    docker run --rm marcusmaximus/msvc-buildtools-cpp:2019-servercore-ltsc2019 C:\Tests.ps1
                 '''
             }
         }
