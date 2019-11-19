@@ -16,6 +16,6 @@ RUN git clone https://github.com/Microsoft/vcpkg.git; `
     cd vcpkg; `
     .\bootstrap-vcpkg.bat
 
-COPY ..\shared\Tests.ps1 C:\Tests.ps1
+COPY .\Tests.ps1 C:\Tests.ps1
 
 CMD [ "powershell" ]
