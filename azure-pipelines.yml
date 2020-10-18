@@ -1,7 +1,4 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# Azure pipeline reference: https://aka.ms/yaml
 
 trigger:
 - master
@@ -23,9 +20,9 @@ variables:
 
 steps:
 - pwsh: |
-    cd buildtools
+    cd msvc-buildtools
     docker build -m 2GB -t $env:TAG_NAME --build-arg FROM_IMAGE=$env:BASE_IMAGE .
-  displayName: 'Build image buildtools'
+  displayName: 'Build image'
 - pwsh: |
     docker run --rm $env:TAG_NAME C:\Tests.ps1
   displayName: 'Run tests'

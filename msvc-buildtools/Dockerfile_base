@@ -12,6 +12,5 @@ RUN Set-ExecutionPolicy Bypass -Scope Process -Force; `
 #RUN C:\TEMP\vs_buildtools.exe --quiet --wait --norestart --nocache
 
 RUN choco install -y visualstudio2019buildtools
-RUN choco install -y git --params '/GitOnlyOnPath /NoGitLfs /NoShellIntegration'
 
 CMD [ "powershell" ]
