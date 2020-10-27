@@ -1,0 +1,38 @@
+# Azure pipeline reference: https://aka.ms/yaml
+
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    exclude:
+    - README.md
+
+schedules:
+- cron: "0 0 1 * *"
+  displayName: Monthly build
+  branches:
+    include:
+    - master
+  always: true
+
+pool:
+  vmImage: 'windows-2019'
+
+jobs:
+- job: continuous_delivery
+
+  variables:
+    tag_name: 'marcusmaximus/msvc-buildtools:2019-servercore-ltsc2019'
+    base_image: 'mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019'
+
+  steps:
+  - template: azure-pipeline/build_steps.yml
+  - pwsh: |
+      $env:DOCKERHUB_PASSWORD | docker login --username $env:DOCKERHUB_USER --password-stdin
+      docker push $env:TAG_NAME
+      docker logout
+    env: 
+      DOCKERHUB_USER: $(dockerhub_user)
+      DOCKERHUB_PASSWORD: $(dockerhub_password)
+    displayName: 'Push image to docker hub'
