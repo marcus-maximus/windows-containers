@@ -18,4 +18,4 @@ jobs:
     base_image: 'mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019'
 
   steps:
-  - template: azure-pipeline/build_steps.yml
+  - template: azure-pipelines/build_steps.yml
