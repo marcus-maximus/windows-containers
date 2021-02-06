@@ -27,11 +27,11 @@ SHELL [ "powershell", "-Command" ]
 RUN Set-ExecutionPolicy Bypass -Scope Process -Force; `
     Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-# Install git
-RUN choco install -y git --params '/GitOnlyOnPath /NoGitLfs /NoShellIntegration'
-
 # Install cmake
 RUN choco install -y cmake --installargs "ADD_CMAKE_TO_PATH=System"
+
+# Install git
+RUN choco install -y git --params '/GitOnlyOnPath /NoGitLfs /NoShellIntegration'
 
 # Install vcpkg
 RUN git clone https://github.com/Microsoft/vcpkg.git; `
