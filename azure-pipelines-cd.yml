@@ -16,6 +16,9 @@ schedules:
     - master
   always: true
 
+variables:
+- group: DockerHub
+
 pool:
   vmImage: 'windows-2019'
 
