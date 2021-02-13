@@ -16,9 +16,6 @@ schedules:
     - master
   always: true
 
-variables:
-- group: DockerHub
-
 pool:
   vmImage: 'windows-2019'
 
@@ -26,8 +23,11 @@ jobs:
 - job: continuous_delivery
 
   variables:
-    tag_name: 'marcusmaximus/msvc-buildtools:2019-servercore-ltsc2019'
-    base_image: 'mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019'
+  - group: DockerHub
+  - name:  tag_name
+    value: 'marcusmaximus/msvc-buildtools:2019-servercore-ltsc2019'
+  - name: base_image
+    value: 'mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019'
 
   steps:
   - template: azure-pipelines/build_steps.yml
