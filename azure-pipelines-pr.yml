@@ -7,6 +7,8 @@ pr:
     exclude:
     - README.md
 
+trigger: none
+
 pool:
   vmImage: 'windows-2019'
 
