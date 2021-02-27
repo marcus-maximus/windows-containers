@@ -4,5 +4,6 @@ steps:
     docker build -m 2GB -t $env:TAG_NAME --build-arg FROM_IMAGE=$env:BASE_IMAGE .
   displayName: 'Build image'
 - pwsh: |
+    & msvc-buildtools\Tests.ps1 $env:TAG_NAME
     docker run --rm $env:TAG_NAME C:\Tests.ps1
   displayName: 'Run tests'

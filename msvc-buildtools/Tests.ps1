@@ -4,4 +4,4 @@ Param(
 
 $MSBuildFound = docker run --rm $imageName msbuild /version `
     | Select-String -Pattern "Microsoft (R) Build Engine" -SimpleMatch -Quiet
-$MSBuildFound ? "msbuild present" : "msbuild missing"
+$MSBuildFound ? $("msbuild present"; exit 0) : $("msbuild missing"; exit 1)
