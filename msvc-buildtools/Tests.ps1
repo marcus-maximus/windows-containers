@@ -1,20 +1,7 @@
-Write-Output "=== MSBuild ==="
-msbuild /version
-Write-Output ""
-Write-Output "------------------------------"
-Write-Output ""
+Param(
+    [string] [Parameter(mandatory=$true)] $imageName
+)
 
-Write-Output "=== CMake ==="
-cmake --version
-Write-Output "------------------------------"
-Write-Output ""
-
-Write-Output "=== Vcpkg ==="
-Set-Location C:\vcpkg; .\vcpkg version
-Write-Output "------------------------------"
-Write-Output ""
-
-Write-Output "=== Git ==="
-git --version
-Write-Output "------------------------------"
-Write-Output ""
+$MSBuildFound = docker run --rm $imageName msbuild /version `
+    | Select-String -Pattern "Microsoft (R) Build Engine" -SimpleMatch -Quiet
+$MSBuildFound ? $("msbuild present"; exit 0) : $("msbuild missing"; exit 1)
